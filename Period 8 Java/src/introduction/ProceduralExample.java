@@ -2,6 +2,6 @@ package introduction;
 
 public class ProceduralExample {
   public static void main(String[] args){
-    System.out.println("But the Earth refused to die");
+    System.out.println("THIS.DIE");
   }
 }
