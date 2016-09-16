@@ -3,7 +3,7 @@ package introduction;
 public class OOPExample {
 
 	public static void main(String[] args) {
-		Student jillian = new Student("Jillian");
+		Student jillian = new Senior("Jillian");
 		Student joseph = new Student("Joseph");
 		Student jordan = new Student("Jordan");
 		jillian.talk();
@@ -12,7 +12,9 @@ public class OOPExample {
 	}
 
 }
-/* Student[] students = {jillian, joseph,jordan};
+/*	[Random thinking notes]
+ *  Student[] students = {jillian, joseph,jordan};
+ *
  * for(i=0; i<3; i++){
  * 	students[i].talk();
  *  }
