@@ -4,8 +4,8 @@ public class OOPExample {
 
 	public static void main(String[] args) {
 		Student jillian = new Senior("Jillian");
-		Student joseph = new Student("Joseph");
-		Student jordan = new Student("Jordan");
+		Student joseph = new Junior("Joseph",17);
+		Student jordan = new Freshman("Jordan");
 		jillian.talk();
 		joseph.talk();
 		jordan.talk();
