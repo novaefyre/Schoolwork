@@ -6,7 +6,7 @@ public class RandomDiceRoll {
 		int[] results = new int[6];
 		//declare variable logic test, increment
 		for(int index = 0; index<10000; index++){
-			int result = rollUnfairDie(5);
+			int result = rollUnfairDie(2);
 			System.out.println("Roll #"+(index+1)+": "+result);
 			results[result-1]++;
 		}
