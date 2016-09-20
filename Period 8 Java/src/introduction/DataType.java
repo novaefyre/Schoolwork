@@ -4,7 +4,7 @@ public class DataType {
 
 	public static void main(String[] args) {
 //Task	
-		/*	System.out.println(5.0/2);
+	/*	System.out.println(5.0/2);
 		//5.0 is a double, because all decimal (floating) point numbers are, so the answer becomes a double
 		System.out.println((double)5/2);
 		//(double) declares that 5 is a double
@@ -14,12 +14,12 @@ public class DataType {
 		System.out.println(3.0+5/2+5*2);
 		//the computer uses PEMDAS, so the 5/2 is an integer
 		System.out.println((int)(3.0 + 5)/(2 + 5 * 2));//(int) declares that the answer to (3.0+5) is an integer, and 8/12 is 0 (because 8 & 12 are integers)
-		if(42 == 42.0) System.out.println("42 equals 42.0");//no idea how the computer knows
-		double d1 = 4.64; 
-		double d2 = 2.0;
-		double d3 = 2.64;*/
+		if(42 == 42.0) System.out.println("42 equals 42.0");*/
 //Test Precision
-	/*	System.out.println("d1 : " + d1); 
+	/*	double d1 = 4.64; 
+		double d2 = 2.0;
+		double d3 = 2.64;
+		System.out.println("d1 : " + d1); 
 		System.out.println("d2 : " + d2); 
 		System.out.println("d3 : " + d3);  
 		System.out.println("d1 - d2 : " + (d1 - d2));*/
@@ -54,7 +54,13 @@ public class DataType {
 	/*10	int m = 22;
 		int n = 7;
 		System.out.println("m/n is "+((double)m/n));
-		Declaring double before the operation causes the computer to treat the result as a floating point value.*/
+		Declaring double before m causes the computer to treat the result as a floating point value.*/
+		String ten = "10";
+		String two = "2";
+		if(ten.compareTo(two)>0)
+			System.out.println("10 is greater than 2.");
+		else
+			System.out.println("10 is not greater than 2.");
 	}
 
 }
