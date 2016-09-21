@@ -5,14 +5,17 @@ public class RandomDiceRoll {
 	public static void main(String[] args) {
 		int[] results = new int[6];
 		//declare variable logic test, increment
-		for(int index = 0; index<10000; index++){
-			int result = rollUnfairDie(2);
+		int totalRolls = 10000;
+		for(int index = 0; index<totalRolls; index++){
+			int result = rollFairDie();
 			System.out.println("Roll #"+(index+1)+": "+result);
 			results[result-1]++;
 		}
 		//print the results
-		for(int i = 0; i<6; i++)
-			System.out.println((1+i)+" appeared "+results[i]+" times.");
+		for(int i = 0; i<6; i++){
+			double percentage = ((int)(1000*(double)results[i]/totalRolls))/10.0;
+			System.out.println((1+i)+" appeared "+percentage+"% of the time.");
+		}
 	}
 	//return a number 1-6 with equal probability
 	public static int rollFairDie(){

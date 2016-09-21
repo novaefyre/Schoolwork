@@ -6,9 +6,9 @@ public class RandomCard {
 
 	public static void main(String[] args) {
 		double rand = Math.random();
-		int nameIdx = (int) (13*rand);
+		int nameIdx = (int) (cardNames.length*rand);
 		double rand2 = Math.random();
-		int suitIdx = (int) (4*rand2);
+		int suitIdx = (int) (cardSuits.length*rand2);
 		String name = cardNames[nameIdx];
 		String suit = cardSuits[suitIdx];
 		System.out.println(name+" of "+suit);
