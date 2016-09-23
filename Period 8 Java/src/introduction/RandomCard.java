@@ -6,7 +6,7 @@ public class RandomCard {
 	static String[] usedCards = {};
 
 	public static void main(String[] args) {
-		boolean thisCardUsed = false;
+		boolean thisCardNotUsed = false;
 		int i = 0;
 		double rand;
 		int nameIdx;
@@ -15,7 +15,7 @@ public class RandomCard {
 		String name;
 		String suit;
 		String cardUsed;
-		while(!thisCardUsed){
+		while(!thisCardNotUsed){
 			rand = Math.random();
 			nameIdx = (int) (cardNames.length*rand);
 			rand2 = Math.random();
@@ -26,13 +26,13 @@ public class RandomCard {
 			if(usedCards.length == 0 || usedCards[i] != cardUsed){
 				usedCards[i] = cardUsed;
 				i++;
-				thisCardUsed = true;
+				thisCardNotUsed = true;
 			}
 		}
 		if(i == 52){
 			System.out.println("All cards used. Resetting.");
 			i = 0;
-			usedCards = {};
+			usedCards = null;
 		}
 		System.out.println(cardUsed);
 	}
