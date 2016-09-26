@@ -1,11 +1,13 @@
-package introduction;
+package chatbot;
 
 import java.util.Scanner;
 
-public class StringPractice {
+public class RouseMain {
 
 	static Scanner input;
 	static String user;
+	static String response;
+	static boolean inMainLoop;
 
 	public static void main(String[] args) {
 		//demonstrateStringMethods();
@@ -21,14 +23,21 @@ public class StringPractice {
 	}
 
 	public static void promptForever(){
-		while(0<1)
-			promptInput();
+		inMainLoop = true;
+		while(inMainLoop){
+			print("Hi, "+user+" how are you?");
+			response = promptInput();
+			if(response.indexOf("good") >= 0){
+				print("That's wonderful.");
+			}else{
+				print("I don't understand.");
+			}
+		}
 	}
 
-	public static void promptInput() {
-		print("Please type something, "+user+".");
+	public static String promptInput() {
 		String userInput = input.nextLine();
-		print("Congratulations! You typed: "+userInput+", "+user);
+		return userInput;
 	}
 
 	private static void createFields() {
@@ -80,24 +89,4 @@ public class StringPractice {
 		System.out.println(printString);
 	}
 
-/*	private static String getCut(String s, int cutoff, int cut){
-		int cutIndex = cut*cutoff;
-		if(cutIndex>s.length()){
-			cutIndex = s.length();
-		}
-		String currentCut = s.substring(0, cutIndex);
-		int indexOfLastSpace = currentCut.length()-1;
-		//start at last index, go backwards
-		for(int i = currentCut.length()-1; i>=0; i--){
-			String letter = currentCut.substring(i, i+1);
-			if(letter.equals(" ")){
-				indexOfLastSpace = i;
-				break;
-			}
-			//shorten the cut to end on a space
-			currentCut = currentCut.substring(0, indexOfLastSpace);
-		}
-		return currentCut;
-	}*/
-	//If unsure about object's fields or methods, look up API
 }

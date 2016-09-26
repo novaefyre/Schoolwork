@@ -34,7 +34,7 @@ public class RandomCard {
 			i = 0;
 			usedCards = null;
 		}
-		System.out.println(cardUsed);
+	//	System.out.println(cardUsed);
 	}
 
 }
