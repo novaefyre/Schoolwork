@@ -8,6 +8,7 @@ public class RouseMain {
 	static String user;
 	static String response;
 	static boolean inMainLoop;
+	static Chatbot school;
 
 	public static void main(String[] args) {
 		//demonstrateStringMethods();
@@ -27,12 +28,39 @@ public class RouseMain {
 		while(inMainLoop){
 			print("Hi, "+user+" how are you?");
 			response = promptInput();
-			if(response.indexOf("good") >= 0){
+			if(findKeyword(response, "good", 0) >= 0){
 				print("That's wonderful.");
+			}else  if(response.indexOf("school") >= 0){
+				print("School is great! Tell me about school.");
+				inMainLoop = false;
+				school.talk();
 			}else{
 				print("I don't understand.");
 			}
 		}
+	}
+
+	private static int findKeyword(String searchString, String keyword, int startPosition) {
+		searchString = searchString.trim();//delete whitespace
+		searchString = searchString.toLowerCase();
+		keyword = keyword.toLowerCase();
+		int pan = searchString.indexOf(0);
+		while(startPosition >= 0){
+			String before = " ";
+			String after = " ";
+			if(startPosition > 0){
+				before = searchString.substring(startPosition-1, startPosition);
+			}
+			if(startPosition + keyword.length() < searchString.length()){
+				after = searchString.substring(startPosition + keyword.length(), startPosition + keyword.length()+1);
+			}
+			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
+				return startPosition;
+			}else{
+				startPosition = searchString.indexOf(keyword,startPosition+1);
+			}
+		}
+		return -1;
 	}
 
 	public static String promptInput() {
@@ -43,6 +71,7 @@ public class RouseMain {
 	private static void createFields() {
 		input = new Scanner(System.in);
 		user = "";
+		school = new RouseSchool();
 	}
 
 	public static void demonstrateStringMethods(){
