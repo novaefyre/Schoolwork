@@ -44,23 +44,46 @@ public class RouseMain {
 		searchString = searchString.trim();//delete whitespace
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();
-		int pan = searchString.indexOf(0);
-		while(startPosition >= 0){
+		System.out.println("The phrase is "+searchString);
+		System.out.println("The keyword is "+keyword);
+		int psn = searchString.indexOf(keyword);
+		System.out.println("The keyword was found at "+psn);
+		while(psn >= 0){
 			String before = " ";
 			String after = " ";
-			if(startPosition > 0){
-				before = searchString.substring(startPosition-1, startPosition);
+			if(psn > 0){
+				before = searchString.substring(psn-1, psn);
+				System.out.println("The character before is "+before);
 			}
 			if(startPosition + keyword.length() < searchString.length()){
-				after = searchString.substring(startPosition + keyword.length(), startPosition + keyword.length()+1);
+				after = searchString.substring(psn + keyword.length(), psn + keyword.length()+1);
+				System.out.println("The character after is "+after);
 			}
-			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
-				return startPosition;
+			if(before.compareTo("a") < 0 && after.compareTo("a") < 0 && noNegations(searchString, psn)){
+				return psn;
 			}else{
-				startPosition = searchString.indexOf(keyword,startPosition+1);
+				psn = searchString.indexOf(keyword,psn+1);
 			}
 		}
 		return -1;
+	}
+
+	private static boolean noNegations(String searchString, int psn) {
+		//is the word "no" in front of the position?
+		//are there three spaces in front of ?
+		if(psn - 3 >= 0 && searchString.substring(psn-3, psn).equals("no ")){
+			return false;
+		}
+		if(psn - 4 >= 0 && searchString.substring(psn-4, psn).equals("not ")){
+			return false;
+		}
+		if(psn - 6 >= 0 && searchString.substring(psn-6, psn).equals("never ")){
+			return false;
+		}
+		if(psn - 4 >= 0 && searchString.substring(psn-4, psn).equals("n't ")){
+			return false;
+		}
+		return true;
 	}
 
 	public static String promptInput() {
@@ -95,7 +118,7 @@ public class RouseMain {
 
 	public static void print(String s){
 		String printString = "";// = s;
-		int cutoff = 35;
+		int cutoff = 50;
 		//check for words to add
 		//IOW s has a length > 0
 		while(s.length() > 0){
