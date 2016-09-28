@@ -40,7 +40,7 @@ public class RouseMain {
 		}
 	}
 
-	private static int findKeyword(String searchString, String keyword, int startPosition) {
+	public static int findKeyword(String searchString, String keyword, int startPosition) {
 		searchString = searchString.trim();//delete whitespace
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();

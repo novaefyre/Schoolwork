@@ -20,4 +20,13 @@ public class RouseSchool implements Chatbot {
 		
 	}
 
+	@Override
+	public boolean isTriggered(String userInput) {
+		//idea: use a for loop and a string array to iterate through a list of triggers instead
+		if(RouseMain.findKeyword(userInput, "school", 0) >= 0){
+			return true;
+		}
+		return false;
+	}
+
 }
