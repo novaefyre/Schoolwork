@@ -6,14 +6,14 @@ public class ArraysPractice {
 
 	public static void main(String[] args) {
 		
-		int[] fiftyNumbers = new int[50];
-		populate(fiftyNumbers);
+		int[] fiftyNumbers = new int[50000];
+		/*populate(fiftyNumbers);
 		print(fiftyNumbers);
 		randomize(fiftyNumbers,50);
-		print(fiftyNumbers);
+		print(fiftyNumbers);*/
 		rollDice(fiftyNumbers, 2);
-		print(fiftyNumbers);
-		countResult(fiftyNumbers);
+		//print(fiftyNumbers);
+		countResult(fiftyNumbers, 2);
 		//Friday, October 14, 2015
 		//arrays in java MUST HAVE ONLY ONE DATA TYPE
 		// If you must treat a primitive type like a class, use it's wrapper class
@@ -59,12 +59,14 @@ public class ArraysPractice {
 		
 	}
 
-	private static void countResult(int[] fiftyNumbers) {
-		int[] resultOccurences = new int[11];
-		for(int i = 0; i < fiftyNumbers.length; i++){
-			resultOccurences[fiftyNumbers[i]-2]++;
+	private static void countResult(int[] fiftyNumbers, int numberOfDice) {
+		int[] counter = new int[numberOfDice*6];
+		for(int n: fiftyNumbers){
+			counter[n-1] = counter[n-1]+1;
 		}
-		print(resultOccurences);
+		for(int i = 0; i < counter.length; i++){
+			System.out.println(i+1 + " was rolled " + 100*counter[i]/fiftyNumbers.length + "% of the time.");
+		}
 	}
 
 	private static void rollDice(int[] fiftyNumbers, int numberOfDice) {
