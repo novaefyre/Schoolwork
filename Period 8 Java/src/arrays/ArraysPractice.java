@@ -64,7 +64,7 @@ public class ArraysPractice {
 		for(int n: fiftyNumbers){
 			counter[n-1] = counter[n-1]+1;
 		}
-		for(int i = 0; i < counter.length; i++){
+		for(int i = numberOfDice-1; i < counter.length; i++){
 			System.out.println(i+1 + " was rolled " + 100*counter[i]/fiftyNumbers.length + "% of the time.");
 		}
 	}
