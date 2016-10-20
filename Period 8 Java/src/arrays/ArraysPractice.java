@@ -7,13 +7,13 @@ public class ArraysPractice {
 	public static void main(String[] args) {
 		
 		int[] fiftyNumbers = new int[50000];
-		/*populate(fiftyNumbers);
+		populate(fiftyNumbers);
 		print(fiftyNumbers);
 		randomize(fiftyNumbers,50);
-		print(fiftyNumbers);*/
-		rollDice(fiftyNumbers, 2);
-		//print(fiftyNumbers);
-		countResult(fiftyNumbers, 2);
+		print(fiftyNumbers);
+		rollDice(fiftyNumbers, 4);
+		print(fiftyNumbers);
+		countResult(fiftyNumbers, 4);
 		//Friday, October 14, 2015
 		//arrays in java MUST HAVE ONLY ONE DATA TYPE
 		// If you must treat a primitive type like a class, use it's wrapper class
