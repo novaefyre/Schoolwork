@@ -117,4 +117,23 @@ public class ArrayMethods {
     		array[i] = revArray[i];
     	}
     }
+    
+    public static int countDifferences(int[] array1, int[] array2){
+    	/**Here, you will write an method that returns the number of values in two arrays
+    	 * that are NOT the same (either in value OR location).
+    	 * The arrays ALWAYS have the same length
+    	 * Examples:
+    	 * countDifferences({1,2,3},{1,2,3}) returns 0, since these arrays are exactly the same
+    	 * countDifferences({3,2,3,4},{3,2,5,4}) returns 1, since '3','2', and '4' are same value, same location, but the 3 and 5 are different
+    	 * countDifferences({4,4,4,4},{1,2,3,4}) returns 3, since '4' is only at the same index ONE time and three others are not
+    	 * countDifferences({1,2,3},{1,3,2}) returns 2, since '2' and '3' are both present, but different locations
+    	 * 
+    	 */
+    	int differences = 0;
+    	for(int i = 0; i < array1.length; i++){
+    		if(array1[i] != array2[i])
+    			differences++;
+    	}
+         return differences;
+    }
 }
