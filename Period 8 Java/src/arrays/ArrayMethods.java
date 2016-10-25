@@ -42,7 +42,7 @@ public class ArrayMethods {
      * */
         if(key > sortedArrayToSearch[0]){
             return -1;
-        }else if(key > sortedArrayToSearch[sortedArrayToSearch.length-1]){
+        }else if(key < sortedArrayToSearch[sortedArrayToSearch.length-1]){
             return -1;
         }else{
         	for(int i = 0; i < sortedArrayToSearch.length; i++){
