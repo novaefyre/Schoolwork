@@ -12,6 +12,10 @@ public class ArrayMethods {
       * DO NOT spend hours and hours trying to fix perfect code just because my test
       * says that it isn't perfect!
       * */
+    /*	int[] arr1 = {1,3,5,3,5,6,8,9};
+    	int[] arr2 = {1,1,5,3,5,5,4,5};
+    	int[] arr3 = {3,2,1,0,-1,-2};
+    	System.out.println(isSorted(arr3)+"");*/
     }
     
     public static int searchUnsorted(int[] arrayToSearch, int key){
@@ -55,7 +59,7 @@ public class ArrayMethods {
          * This method takes an in array as a parameter and returns 'true' if the array is already sorted in DESCENDING order
          * */
 	    	for(int i = 0; i < array.length-1; i++){
-	    		if(array[i]>array[i+1])
+	    		if(array[i] < array[i+1])
 	    			return false;
 	    	}
 	        return true;
@@ -152,7 +156,7 @@ public class ArrayMethods {
     		if(array1[i] != array2[i])
     			differences++;
     	}
-         return differences;
+        return differences;
     }
     
 
@@ -203,8 +207,10 @@ public class ArrayMethods {
         for(int seqStart = 0; seqStart < array1.length; seqStart++){
         	int seqEnd = seqStart;
         	int[] seq = getSequence(seqStart, seqEnd, array1);
-        	if(checkSequence(seq, array2)){
+        	while(checkSequence(seq, array2)){
         		count++;
+        		seqEnd++;
+        		seq = getSequence(seqStart, seqEnd, array1);
         		if(count < max){
         			max = count;
         		}
@@ -218,14 +224,31 @@ public class ArrayMethods {
 
     //true if seq is inside of array
     private static boolean checkSequence(int[] seq, int[] array) {
-		// TODO Auto-generated method stub
+		int numMatch = 0;
+    	for(int i = 0; i < array.length; i++){
+			for(int j = 0; j < seq.length; j++){
+				if(seq[j] == array[i]){
+					numMatch++;
+				}
+				i++;
+			}
+			i--;
+			if(numMatch == seq.length){
+				return true;
+			}
+		}
 		return false;
 	}
 
 	//returns sub array of array from seqStart to seqEnd
     public static int[] getSequence(int seqStart, int seqEnd, int[] array) {
-		// TODO Auto-generated method stub
-		return null;
+		int[] subArray = new int[seqEnd - seqStart+1];
+		int seqIdx = 0;
+		for(int i = seqStart; i <= seqEnd; i++){
+			subArray[seqIdx] = array[i];
+			seqIdx++;
+		}
+		return subArray;
 	}
 
 	public static int[] generateDistinctItemsList(int n){
