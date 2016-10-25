@@ -101,7 +101,7 @@ public class ArrayMethods {
 	    	}
 	    		
 	    	
-	    	if((array.length/2)-((int)array.length/2) != 0){
+	    	if((array.length/2)-((double)array.length/2) != 0){
 	    		median = array[(int) (array.length/2)+1];
 	    	}else{
 	    		median = (array[(int) (array.length/2)]+array[(int) (array.length/2)+1])/2;
@@ -205,13 +205,14 @@ public class ArrayMethods {
         int max = 0;
         int count = 0;
         for(int seqStart = 0; seqStart < array1.length; seqStart++){
+        	//put a loop here. make it do a thing
         	int seqEnd = seqStart;
         	int[] seq = getSequence(seqStart, seqEnd, array1);
         	while(checkSequence(seq, array2)){
         		count++;
         		seqEnd++;
         		seq = getSequence(seqStart, seqEnd, array1);
-        		if(count < max){
+        		if(count > max){
         			max = count;
         		}
         	}
@@ -227,12 +228,14 @@ public class ArrayMethods {
 		int numMatch = 0;
     	for(int i = 0; i < array.length; i++){
 			for(int j = 0; j < seq.length; j++){
-				if(seq[j] == array[i]){
-					numMatch++;
+				if(j+i < array.length && seq[j] != array[i+j]){
+					//breaks out of innermost for loop, unless another for loop is specified
+					//for loops can be labeled as follows: "A: " where A is anything you want
+					break;
+				}else if(j == seq.length){
+					return true;
 				}
-				i++;
 			}
-			i--;
 			if(numMatch == seq.length){
 				return true;
 			}
@@ -341,7 +344,7 @@ public class ArrayMethods {
          * This method takes a double array as a parameter and returns 'true' if the array is already sorted in DESCENDING order
          * */
 	    	for(int i = 0; i < array.length-1; i++){
-	    		if(array[i]>array[i+1])
+	    		if(array[i] > array[i+1])
 	    			return false;
 	    	}
 	        return true;
