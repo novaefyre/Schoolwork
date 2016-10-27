@@ -12,17 +12,6 @@ public class ArrayMethods {
       * DO NOT spend hours and hours trying to fix perfect code just because my test
       * says that it isn't perfect!
       * */
-    /*	int[] arr1 = {1,3,5,3,5,6,8,9};
-    	int[] arr2 = {1,1,5,3,5,5,4,5};
-    	int[] arr3 = {3,2,1,0,-1,-2};
-    	System.out.println(isSorted(arr3)+"");*/
-    	double[] hi = {1.7, 3.0, 2.0, 3.7};
-    	System.out.println(getStats(hi)[0]);
-    	System.out.println(getStats(hi)[1]);
-    	System.out.println(getStats(hi)[2]);
-    	System.out.println(getStats(hi)[3]);
-    	System.out.println(getStats(hi)[4]);
-    	System.out.println(getStats(hi)[5]);
     	
     }
     
@@ -51,25 +40,26 @@ public class ArrayMethods {
 	    if(key > sortedArrayToSearch[0]){
 		    return -1;
 	    }
-	    if(key < sortedArrayToSearch[sortedArrayToSearch-1){
+	    if(key < sortedArrayToSearch[sortedArrayToSearch.length-1]){
 		    return -1;
 	    }
 	while(sortedArrayToSearch.length > 0){
 		    int center = middleIndex(sortedArrayToSearch);
 		    if(key == sortedArrayToSearch[center]){
-			    return middleIndex;
+			    return center;
 		    }else if(key > sortedArrayToSearch[center]){
 			    sortedArrayToSearch = subArray(sortedArrayToSearch,center,sortedArrayToSearch.length-1);
 		    }else{
 			    sortedArrayToSearch = subArray(sortedArrayToSearch,0,center);
 		    }
 	    }
-	return -1
+	return -1;
     }
+    //for searchSorted
 	public static int middleIndex(int[] array){
 		return array[(int) (array.length/2)];
-	    }
-	
+	}
+	//for searchSorted
 	public static int[] subArray(int[] array, int start, int end){
 		    if(start == end){
 			    return new int[1];
@@ -200,7 +190,7 @@ public class ArrayMethods {
          * */
         int longConsSeq = 1;
 	for(int i = 0; i < array.length; i++){
-		seqLength = sequenceLength(array, i);
+		int seqLength = sequenceLength(array, i);
 		if(seqLength > longConsSeq){
 			longConsSeq = seqLength;
 		}
@@ -216,7 +206,7 @@ public class ArrayMethods {
 			    if(array[idx]+1 == array[idx+1]){
 				count++;
 			    }else{
-				seqCount = false;    
+				seqCont = false;    
 			    }
 			    idx++;
 		    }
@@ -257,12 +247,10 @@ public class ArrayMethods {
 
     private static int countSequence(int[] arr1,int[] arr2,int start1, int start2) {
  	   int sequenceLength=0;
-			int arr1Start = start1;
-			int arr2Start = start2;
-			while (arr1Start<arr1.length&&arr2Start<arr2.length&&arr1[arr1Start]==arr2[arr2Start]){
+			while (start1<arr1.length&&start2<arr2.length&&arr1[start1]==arr2[start2]){
 				sequenceLength++;
-				arr1Start++;
-				arr2Start++;
+				start1++;
+				start2++;
 			}
 		return sequenceLength;
 	}
@@ -279,9 +267,13 @@ public class ArrayMethods {
         boolean[] isUsed = new boolean[2*n];
         int [] itemsList = new int[n];
         for(int i = 0; i < itemsList.length; i++){
-        	int random = (int) (Math.random()*2*n);
+        	int random = (int) (Math.random()*2*n+1);
+        	while(isUsed[random]){
+        		random = (int) (Math.random()*2*n+1);
+        	}
+        	itemsList[i] = random;
         }
-        return null;
+        return itemsList;
     }
     
     
