@@ -48,19 +48,40 @@ public class ArrayMethods {
      * 
      * Note: You should attempt to write a method that is more efficient that searchUnsorted
      * */
-        if(key > sortedArrayToSearch[0]){
-            return -1;
-        }else if(key < sortedArrayToSearch[sortedArrayToSearch.length-1]){
-            return -1;
-        }else{
-        	for(int i = 0; i < sortedArrayToSearch.length; i++){
-        		if(sortedArrayToSearch[i] == key){
-        			return i;
-        		}
-        	}
-        	return -1;
-        }
+	    if(key > sortedArrayToSearch[0]){
+		    return -1;
+	    }
+	    if(key < sortedArrayToSearch[sortedArrayToSearch-1){
+		    return -1;
+	    }
+	while(sortedArrayToSearch.length > 0){
+		    int center = middleIndex(sortedArrayToSearch);
+		    if(key == sortedArrayToSearch[center]){
+			    return middleIndex;
+		    }else if(key > sortedArrayToSearch[center]){
+			    sortedArrayToSearch = subArray(sortedArrayToSearch,center,sortedArrayToSearch.length-1);
+		    }else{
+			    sortedArrayToSearch = subArray(sortedArrayToSearch,0,center);
+		    }
+	    }
+	return -1
     }
+	public static int middleIndex(int[] array){
+		return array[(int) (array.length/2)];
+	    }
+	
+	public static int[] subArray(int[] array, int start, int end){
+		    if(start == end){
+			    return new int[1];
+		    }
+		  int[] sub = new int[end-start];
+		    int i = 0;
+		    for(int j = start; j <= end; j++){
+			    sub[i] = array[j];
+			    i++;
+		    }
+		    return sub;
+	    }
     
     public static boolean isSorted(int[] array){
         /**
@@ -178,25 +199,29 @@ public class ArrayMethods {
          * longestSequence({0,9,8,11,4,3,7,9}) returns '1', since there are no consecutive integers
          * */
         int longConsSeq = 1;
-        for(int i = 0; i < array.length-1; i++){
-            int curConsSeq = 1;
-            boolean contCheck = true;
-            int j = i;
-            while(contCheck){
-                if(array[j] == array[j+1]-1){
-                    curConsSeq++;
-                    j++;
-                }else{
-                    contCheck = false;
-                }
-            }
-            i += j;
-            if(curConsSeq > longConsSeq){
-                longConsSeq = curConsSeq;
-            }
-        }
+	for(int i = 0; i < array.length; i++){
+		seqLength = sequenceLength(array, i);
+		if(seqLength > longConsSeq){
+			longConsSeq = seqLength;
+		}
+		i += seqLength-1;
+	}
         return longConsSeq;
     }
+	public static int sequenceLength(int[] array, int start){
+		    boolean seqCont = true;
+		    int count = 0;
+		    int idx = start;
+		    while(seqCont && idx+1 < array.length){
+			    if(array[idx]+1 == array[idx+1]){
+				count++;
+			    }else{
+				seqCount = false;    
+			    }
+			    idx++;
+		    }
+		return count;
+	}
 
     public static int longestSharedSequence(int[] array1, int[] array2){
         /**This method counts the longest unbroken, shared sequence in TWO arrays.
