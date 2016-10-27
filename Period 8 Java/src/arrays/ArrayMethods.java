@@ -16,6 +16,14 @@ public class ArrayMethods {
     	int[] arr2 = {1,1,5,3,5,5,4,5};
     	int[] arr3 = {3,2,1,0,-1,-2};
     	System.out.println(isSorted(arr3)+"");*/
+    	double[] hi = {1.7, 3.0, 2.0, 3.7};
+    	System.out.println(getStats(hi)[0]);
+    	System.out.println(getStats(hi)[1]);
+    	System.out.println(getStats(hi)[2]);
+    	System.out.println(getStats(hi)[3]);
+    	System.out.println(getStats(hi)[4]);
+    	System.out.println(getStats(hi)[5]);
+    	
     }
     
     public static int searchUnsorted(int[] arrayToSearch, int key){
@@ -77,23 +85,23 @@ public class ArrayMethods {
          * index 4 = the number of values greater than or equal to the mean
          * index 5 = the number of values below the mean
          * */
-            sortDoubleArr(array);
+            array = sortDoubleArr(array);
         
 	    	double[] stats = new double[6];
-	    	double mean = 0;
+	    	double sum = 0;
 	    	double max = array[0];
 	    	double min = array[array.length-1];
 	    	double median = 0;
 	    	double moreThanMean = 0;
 	    	double lessThanMean = 0;
 	    	
-	    	for(int i = 0; i < array.length; i++){
-	    	    mean += array[i];
+	    	for(int i = 0; i<array.length;i++){
+	    		sum += array[i];
 	    	}
-	    	mean = mean/array.length;
+	    	stats[0] = sum/array.length;
 	    	
 	    	for(int i = 0; i <array.length; i++){
-	    		if(array[i] < mean){
+	    		if(array[i] < stats[0]){
 	    			lessThanMean++;
 	    		}else{
 	    			moreThanMean++;
@@ -101,15 +109,14 @@ public class ArrayMethods {
 	    	}
 	    		
 	    	
-	    	if((array.length/2)-((double)array.length/2) != 0){
-	    		median = array[(int) (array.length/2)+1];
+	    	if(array.length%2 != 0){
+	    		median = array[(int) (array.length/2)];
 	    	}else{
-	    		median = (array[(int) (array.length/2)]+array[(int) (array.length/2)+1])/2;
+	    		median = (array[(int) (array.length/2)]+array[(int) (array.length/2)-1])/2;
 	    	}
 	    	
-	    	stats[0] = mean;
-	    	stats[1] = max;
-	    	stats[2] = min;
+	    	stats[1] = min;
+	    	stats[2] = max;
 	    	stats[3] = median;
 	    	stats[4] = moreThanMean;
 	    	stats[5] = lessThanMean;
@@ -202,57 +209,39 @@ public class ArrayMethods {
          *          since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long, it doesn't matter that the sequence begins at different indices 
          * longestSequence({9,6,1,4,3,6,7,9}, {9,6,5,8,3,6,7,0}) returns '3', since the sequence '3,6,7' is in both arrays and is 3 integers long
          * */
-        int max = 0;
-        int count = 0;
-        for(int seqStart = 0; seqStart < array1.length; seqStart++){
-        	//put a loop here. make it do a thing
-        	int seqEnd = seqStart;
-        	int[] seq = getSequence(seqStart, seqEnd, array1);
-        	while(checkSequence(seq, array2)){
-        		count++;
-        		seqEnd++;
-        		seq = getSequence(seqStart, seqEnd, array1);
-        		if(count > max){
-        			max = count;
-        		}
-        	}
-        	//reset count
-        	count = 0;
+    	int tempSequenceLength=0;
+ 	   int longestSequence=0;
+        for(int i=0;i<array1.length-1;i++){
+     	   for(int j=0;j<array2.length;j++){
+     		   if(array1[i]==array2[j]){
+     			   tempSequenceLength = countSequence(array1, array2,i,j);
+     			   if(tempSequenceLength>longestSequence)
+     				   longestSequence=tempSequenceLength;
+     			   
+     			   if(array1.length<=i+tempSequenceLength)
+     			      i=array1.length-1;
+     			      
+     			   else if(tempSequenceLength>1)
+     				   i=i+tempSequenceLength-1;
+     		   } 
+     	   }
         }
-        
-        return max;
+        return longestSequence;
+
     }
 
-    //true if seq is inside of array
-    private static boolean checkSequence(int[] seq, int[] array) {
-		int numMatch = 0;
-    	for(int i = 0; i < array.length; i++){
-			for(int j = 0; j < seq.length; j++){
-				if(j+i < array.length && seq[j] != array[i+j]){
-					//breaks out of innermost for loop, unless another for loop is specified
-					//for loops can be labeled as follows: "A: " where A is anything you want
-					break;
-				}else if(j == seq.length){
-					return true;
-				}
+    private static int countSequence(int[] arr1,int[] arr2,int start1, int start2) {
+ 	   int sequenceLength=0;
+			int arr1Start = start1;
+			int arr2Start = start2;
+			while (arr1Start<arr1.length&&arr2Start<arr2.length&&arr1[arr1Start]==arr2[arr2Start]){
+				sequenceLength++;
+				arr1Start++;
+				arr2Start++;
 			}
-			if(numMatch == seq.length){
-				return true;
-			}
-		}
-		return false;
+		return sequenceLength;
 	}
 
-	//returns sub array of array from seqStart to seqEnd
-    public static int[] getSequence(int seqStart, int seqEnd, int[] array) {
-		int[] subArray = new int[seqEnd - seqStart+1];
-		int seqIdx = 0;
-		for(int i = seqStart; i <= seqEnd; i++){
-			subArray[seqIdx] = array[i];
-			seqIdx++;
-		}
-		return subArray;
-	}
 
 	public static int[] generateDistinctItemsList(int n){
         /**
@@ -262,10 +251,11 @@ public class ArrayMethods {
          * contains only entries between 1 and 2n (inclusive) and has no duplicates
          * 
          * */
-    /*    int[] array = new int[n];
-        for(int i = 0; i < array.length; i++){
-            array[i] = i+n;
-        }*/
+        boolean[] isUsed = new boolean[2*n];
+        int [] itemsList = new int[n];
+        for(int i = 0; i < itemsList.length; i++){
+        	int random = (int) (Math.random()*2*n);
+        }
         return null;
     }
     
@@ -329,14 +319,15 @@ public class ArrayMethods {
 		array[a] = placeholder;
 	}
 	
-	public static void sortDoubleArr(double[] array){
+	public static double[] sortDoubleArr(double[] array){
 	    while(!isSortedDouble(array)){
-	        for(int i = 0; i < array.length; i++){
-	            if(array[i] < array[i+1]){
+	        for(int i = 0; i < array.length-1; i++){
+	            if(array[i] > array[i+1]){
 	                swapDouble(array, i, i+1);
 	            }
 	        }
 	    }
+	    return array;
 	}
 	
 	public static boolean isSortedDouble(double[] array){
