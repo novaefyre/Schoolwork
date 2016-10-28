@@ -6,14 +6,7 @@ public class ArraysPractice {
 
 	public static void main(String[] args) {
 		
-		int[] fiftyNumbers = new int[50000];
-		populate(fiftyNumbers);
-		print(fiftyNumbers);
-		randomize(fiftyNumbers,50);
-		print(fiftyNumbers);
-		rollDice(fiftyNumbers, 4);
-		print(fiftyNumbers);
-		countResult(fiftyNumbers, 4);
+		listPrimes(120);
 		//Friday, October 14, 2015
 		//arrays in java MUST HAVE ONLY ONE DATA TYPE
 		// If you must treat a primitive type like a class, use it's wrapper class
@@ -57,6 +50,31 @@ public class ArraysPractice {
 			System.out.println(someStrings1[i]);
 		}*/
 		
+	}
+
+	private static void listPrimes(int limit) {
+		int lastToCheck = (int) (Math.sqrt(limit));
+		boolean[] numbers = new boolean[limit+1];
+		for(int i = 0; i < limit+1; i++){
+			numbers[i] = true;
+		}
+		numbers[0] = false;
+		numbers[1] = false;
+		for(int prime = 2; prime <+ lastToCheck; prime++){
+			if(numbers[prime]){
+				System.out.println("\n"+prime+" is prime. Crossing off:");
+				for(int i = (int) (Math.pow(prime, 2)); i < limit+1; i+= prime){
+					System.out.print(i+", ");
+					numbers[i] = false;
+				}
+			}
+		}
+		System.out.println("\nThe primes are: ");
+		for(int j = 0; j < limit+1; j++){
+			if(numbers[j]){
+				System.out.print(j+", ");
+			}
+		}
 	}
 
 	private static void countResult(int[] fiftyNumbers, int numberOfDice) {
