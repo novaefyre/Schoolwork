@@ -77,7 +77,7 @@ public class ArraysPractice {
 		}
 	}
 
-	private static void countResult(int[] fiftyNumbers, int numberOfDice) {
+/*	private static void countResult(int[] fiftyNumbers, int numberOfDice) {
 		int[] counter = new int[numberOfDice*6];
 		for(int n: fiftyNumbers){
 			counter[n-1] = counter[n-1]+1;
@@ -107,7 +107,7 @@ public class ArraysPractice {
 	private static void print(int[] fiftyNumbers) {
 		String output = "[";
 		for(int i = 0; i < fiftyNumbers.length; i++){
-			output += /*i +": " + */fiftyNumbers[i]+" ";
+			output += /*i +": " + fiftyNumbers[i]+" ";
 		}
 		output += "]";
 		System.out.println(output);
@@ -118,6 +118,6 @@ public class ArraysPractice {
 			numbers[i] = i+1;
 		}
 		
-	}
+	}*/
 
 }
