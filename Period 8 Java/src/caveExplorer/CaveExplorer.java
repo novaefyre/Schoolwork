@@ -19,10 +19,9 @@ public class CaveExplorer {
 		}
 		currentRoom = caves[1][2];
 		currentRoom.enter();
-		caves[1][2].setConnection(caves[1][1]);
-		caves[1][2].setConnection(caves[2][2]);
-		caves[1][2].setConnection(caves[1][3]);
-
+		caves[1][2].setConnection(CaveRoom.WEST, caves[1][1], new Door());
+		caves[1][2].setConnection(CaveRoom.SOUTH, caves[2][2], new Door());
+		caves[1][2].setConnection(CaveRoom.NORTH, caves[1][3], new Door());
 	}
 
 }
