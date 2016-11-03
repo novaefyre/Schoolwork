@@ -1,59 +1,106 @@
 package caveExplorer;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class TwoDArraysIntro {
 	
-	public static void main(String[] args){
-		boolean[][] mines = new boolean[6][6];
-		plantMines(mines);
-		String[][] field = createField(mines);
-		printPic(field);
-	}
+	public static Scanner in = new Scanner(System.in);
+	static String[][] arr2D;
+	static String[][] pic;
+	static int starti;
+	static int startj;
+	static int treasurei;
+	static int treasurej;
 	
-	private static String[][] createField(boolean[][] mines) {
-		String[][] field = new String[mines.length][mines[0].length];
-		for(int row = 0; row < field.length; row++){
-			for(int col = 0; col < field[row].length; col++){
-				if(mines[row][col])
-					field[row][col] = "X";
-				else{
-					field[row][col] = countNearby(mines, row, col);
-				}
+	public static void main(String[] args){
+		arr2D = new String[5][5];
+		pic = new String[5][5];
+		drawMap();
+		for(int row = 0; row < arr2D.length; row++){
+			for(int col = 0; col < arr2D.length; col++){
+				arr2D[row][col] = "("+row+","+col+")";
 			}
 		}
-		return field;
+		starti = 2;
+		startj = 2;
+		treasurei = 4;
+		treasurej = 3;
+		startExploring();
 	}
 
-	private static String countNearby(boolean[][] mines, int row, int col) {
-		for(int r = row-1; r <= row+1; r++){
-			for(int c = col-1; c <= col+1; c++){
-				if(r >= 0 && r < mines.length && c >=0 && c < mines[0].length){
-					
+	private static void drawMap() {
+		for(int i = 0; i < pic.length; i++){
+			for(int j = 0; j < pic[0].length; j++){
+				if(i == 0 || i == pic.length-1){
+					pic[i][j] = "_";
 				}
-			}
-		}
-		return null;
-	}
-
-	private static void plantMines(boolean[][] mines) {
-		int numOfMines = 10;
-		while(numOfMines > 0){
-			int row = (int)(Math.random() * mines.length-1);
-			int col = (int)(Math.random() * mines[0].length-1);
-			//prevent same mine selected twice
-//			while(mines[row][col]){
-//				row = (int)(Math.random() * mines.length-1);
-//				col = (int)(Math.random() * mines[0].length-1);
-//			}
-			if(!mines[row][col]){
-				mines[row][col] = true;
-				numOfMines--;
+				if(j == 0 && i != 0 || j == pic[i].length-1){
+					pic[i][j] = "|";
+				}
+				if(i == starti && j == startj){
+					pic[i][j] = "X";
+				}
+				if(pic[i][j].equals(null)){
+					pic[i][j] = " ";
+				}
 			}
 		}
 		
 	}
 
+	private static void startExploring() {
+		while(true){
+			printPic(pic);
+			System.out.println("You are in room "+arr2D[starti][startj]+".");
+			if(starti == treasurei && startj == treasurej){
+				break;
+			}
+			System.out.println("What do you want to do?");
+			String input = in.nextLine();
+			int[] newCoords = interpretInput(input);
+			starti = newCoords[0];
+			startj = newCoords[1];
+		}
+		System.out.println("Congrats, you found the treasure! You win everything forever!");
+	}
+
+	private static int[] interpretInput(String input) {
+		while(!isValid(input)){
+			System.out.println("Sorry, only WASD commands are valid. Please try again.");
+			input = in.nextLine();
+		}
+		int currenti = starti;
+		int currentj = startj;
+		input = input.toLowerCase();
+		if(input.equals("w"))
+			currenti--;
+		if(input.equals("a"))
+			currenti++;
+		if(input.equals("s"))
+			currentj--;
+		if(input.equals("d"))
+			currentj++;
+		int[] newCoords = {starti,startj};
+		if(currenti >= 0 && currenti < arr2D.length && currentj >= 0 && currentj < arr2D[0].length){
+			newCoords[0] = currenti;
+			newCoords[1] = currentj;
+		}else{
+			System.out.println("I can't let you do that, Dave. (You've reached the edge of the map! You can't go any farther in that direction.)");
+		}
+		return newCoords;
+	}
+
+	private static boolean isValid(String input) {
+		String[] validKeys = {"w","a","s","d"};
+		for(String key : validKeys){
+			if(input.toLowerCase().equals(key)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public static void printPic(String[][] pic){
 		for(String[] row : pic){
 			for(String col : row){
@@ -62,24 +109,5 @@ public class TwoDArraysIntro {
 			System.out.println();
 		}
 	}
-	
-	public static void intro(){
-		String[] xox = {"x","o","x","o","x","o"};
-		//a 1D array prints a horizontal string
-		
-		String[][] pic = new String[10][8];
-		for(int row = 0; row < pic.length; row++){
-			//populate w/ coords
-			for(int col = 0; col < pic[row].length; col++){
-				pic[row][col] = " ";
-			}
-		}
-		
-		//print 2D array
-		for(String[] row : pic){
-			System.out.println(Arrays.toString(row));
-		}
-	}
-
 }
 
