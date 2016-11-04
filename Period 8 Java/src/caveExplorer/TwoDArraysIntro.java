@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class TwoDArraysIntro {
 	
-	public static Scanner in = new Scanner(System.in);
+	static Scanner in = new Scanner(System.in);
 	static String[][] arr2D;
 	static String[][] pic;
 	static int starti;
@@ -32,6 +32,7 @@ public class TwoDArraysIntro {
 	private static void drawMap() {
 		for(int i = 0; i < pic.length; i++){
 			for(int j = 0; j < pic[0].length; j++){
+				pic[i][j] = " ";
 				if(i == 0 || i == pic.length-1){
 					pic[i][j] = "_";
 				}
@@ -41,12 +42,8 @@ public class TwoDArraysIntro {
 				if(i == starti && j == startj){
 					pic[i][j] = "X";
 				}
-				if(pic[i][j].equals(null)){
-					pic[i][j] = " ";
-				}
 			}
 		}
-		
 	}
 
 	private static void startExploring() {
