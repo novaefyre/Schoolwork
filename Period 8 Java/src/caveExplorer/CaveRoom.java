@@ -18,7 +18,7 @@ public class CaveRoom {
 
 	public CaveRoom(String description){
 		this.description = description;
-		setDefaultContents("   ");
+		setDefaultContents(" ");
 		contents = defaultContents;
 		
 		borderingRooms = new CaveRoom[4];
@@ -42,7 +42,7 @@ public class CaveRoom {
 	}
 
 	public static String toDirection(int dir) {
-		String[] strings = {"the North","the East","the South","the North"};
+		String[] strings = {"the North","the East","the South","the West"};
 		return strings[dir];
 	}
 
@@ -51,7 +51,7 @@ public class CaveRoom {
 	}
 	
 	public void enter(){
-		contents = " X ";
+		contents = "X";
 	}
 	
 	public void leave(){
@@ -121,7 +121,10 @@ public class CaveRoom {
 			}
 		}
 		if(borderingRooms[indexFound] != null && doors[indexFound] != null && doors[indexFound].isOpen()){
+			CaveExplorer.currentRoom.leave();
 			CaveExplorer.currentRoom = borderingRooms[indexFound];
+			CaveExplorer.currentRoom.enter();
+			CaveExplorer.inventory.updateMap();
 		}
 		
 	}

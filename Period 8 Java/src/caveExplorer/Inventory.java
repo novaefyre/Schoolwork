@@ -6,11 +6,15 @@ public class Inventory {
 	private String map;
 	
 	public Inventory() {
-		hasMap = true;
+		hasMap = false;
 		updateMap();
 	}
 	
-	private void updateMap() {
+	public void setHasMap(boolean hasMap) {
+		this.hasMap = hasMap;
+	}
+
+	public void updateMap() {
 		CaveRoom[][] cave = CaveExplorer.caves;
 		//create top of map
 		map = " ";
