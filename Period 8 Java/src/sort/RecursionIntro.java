@@ -9,10 +9,11 @@ public class RecursionIntro {
 		//helloWorld();
 	}
 	
+	@SuppressWarnings("unused")
 	private static int count = 1;
 	
 	public static void print(String s){
-		System.out.println("Move #" + count + " " + s);
+		System.out.println(s);
 		count++;
 	}
 
@@ -68,7 +69,8 @@ public class RecursionIntro {
 		return fact;
 	}
 	
-/*	private static void helloWorld() {
+	@SuppressWarnings("unused")
+	private static void helloWorld() {
 		System.out.println("Using a for loop");
 		for(int i = 0; i<5; i++)
 		{
@@ -94,7 +96,7 @@ public class RecursionIntro {
 			action.act();//standard action
 			forLoop(i-1,action);//recursive call
 		}
-	}*/
+	}
 }
 
 
