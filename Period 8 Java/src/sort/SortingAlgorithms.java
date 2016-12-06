@@ -6,10 +6,10 @@ public class SortingAlgorithms {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int[] arrayToSort={133,0,-5,31,12,12,2};
-//		System.out.println("- - - SELECTION SORT - - -");
-//		System.out.println(Arrays.toString(arrayToSort));
+		System.out.println("- - - QUICKSORT SORT - - -");
+		System.out.println(Arrays.toString(arrayToSort));
 //		selectionSort(copy(arrayToSort));
-		quicksort(arrayToSort);
+		quicksort(copy(arrayToSort));
 	}
 	
 	private static void quicksort(int[] arrayToSort) {
@@ -49,27 +49,22 @@ public class SortingAlgorithms {
 		}
 	}
 	
-	public static void quicksort(int[] array, int s, int e){
-		if(array.length <= 1){
-			return;
-		}
-		if(s == e){
-			e =array.length-1; 
-		}
-		int pivot = array.length-1;
+	public static void quicksort(int[] arrayToSort, int s, int e){
+		System.out.println("s is "+s+" and e is "+e);
+		int pivot = arrayToSort.length-1;
 		for(int i = s; i < e; i++){
-			if(array[i] > array[pivot]){
-				int toMove = array[i];
+			if(arrayToSort[i] > arrayToSort[pivot]){
+				int toMove = arrayToSort[i];
+				System.out.println("toMove is: "+toMove);
 				for(int j = i; j < pivot; j++){
-					array[j] = array[j++];
+					arrayToSort[j] = arrayToSort[j++];
 				}
-				array[pivot] = toMove;
+				arrayToSort[pivot] = toMove;
 				pivot--;
 			}
-			if(pivot-1 >= 0)
-				quicksort(array,0,pivot-1);
-			if(pivot+1 < array.length)
-				quicksort(array,pivot+1,array.length-1);
+			System.out.println(Arrays.toString(arrayToSort)+" Pivot is: "+pivot);
+			quicksort(arrayToSort,0,pivot-1);
+			quicksort(arrayToSort,pivot+1,arrayToSort.length-1);
 		}
 	}
 }
