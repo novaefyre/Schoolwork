@@ -42,5 +42,5 @@ public class SortingAlgorithms {
 			swap(arrayToSort, i, minIndex);
 		}
 	}
-	
+
 }
