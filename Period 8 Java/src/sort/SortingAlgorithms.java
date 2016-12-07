@@ -9,28 +9,22 @@ public class SortingAlgorithms {
 		System.out.println("- - - QUICKSORT SORT - - -");
 		System.out.println(Arrays.toString(arrayToSort));
 //		selectionSort(copy(arrayToSort));
-		quicksort(copy(arrayToSort));
-	}
-	
-	private static void quicksort(int[] arrayToSort) {
-		quicksort(arrayToSort,0,arrayToSort.length);
-		
 	}
 
-	public static int[] copy(int[] arr){
-		int[] copy = new int[arr.length];
+	public static int[] copy(int[] arrayToSort){
+		int[] copy = new int[arrayToSort.length];
 		for(int i = 0; i < copy.length; i++){
-			copy[i]=arr[i];
+			copy[i]=arrayToSort[i];
 		}
 		return copy;
 	}
 	
-	public static void swap(int[] arr, int i, int j){
-		System.out.println("Swapping "+arr[i]+" and "+arr[j]);
-		int placeHolder=arr[j];
-		arr[j]=arr[i];
-		arr[i]=placeHolder;
-		System.out.println(Arrays.toString(arr));
+	public static void swap(int[] arrayToSort, int i, int j){
+		System.out.println("Swapping "+arrayToSort[i]+" and "+arrayToSort[j]);
+		int placeHolder=arrayToSort[j];
+		arrayToSort[j]=arrayToSort[i];
+		arrayToSort[i]=placeHolder;
+		System.out.println(Arrays.toString(arrayToSort));
 	}
 	
 	public static void selectionSort(int[] arrayToSort){
@@ -49,22 +43,4 @@ public class SortingAlgorithms {
 		}
 	}
 	
-	public static void quicksort(int[] arrayToSort, int s, int e){
-		System.out.println("s is "+s+" and e is "+e);
-		int pivot = arrayToSort.length-1;
-		for(int i = s; i < e; i++){
-			if(arrayToSort[i] > arrayToSort[pivot]){
-				int toMove = arrayToSort[i];
-				System.out.println("toMove is: "+toMove);
-				for(int j = i; j < pivot; j++){
-					arrayToSort[j] = arrayToSort[j++];
-				}
-				arrayToSort[pivot] = toMove;
-				pivot--;
-			}
-			System.out.println(Arrays.toString(arrayToSort)+" Pivot is: "+pivot);
-			quicksort(arrayToSort,0,pivot-1);
-			quicksort(arrayToSort,pivot+1,arrayToSort.length-1);
-		}
-	}
 }
