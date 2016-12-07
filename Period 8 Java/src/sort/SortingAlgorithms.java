@@ -48,7 +48,7 @@ public class SortingAlgorithms {
 			swap(arrayToSort, i, minIndex);
 		}
 	}
-	
+	//Keep trying!
 	public static void quicksort(int[] arrayToSort, int s, int e){
 		System.out.println("s is "+s+" and e is "+e);
 		int pivot = arrayToSort.length-1;
