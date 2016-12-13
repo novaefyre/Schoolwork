@@ -2,6 +2,7 @@ package sort;
 
 public class Pokemon {
 	
+	@SuppressWarnings("unused")
 	private int level;
 	private int hp;
 	private String name;

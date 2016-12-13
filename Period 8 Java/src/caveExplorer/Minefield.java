@@ -87,9 +87,6 @@ public class Minefield {
 	}
 	
 	public static void intro(){
-		String[] xox = {"x","o","x","o","x","o"};
-		//a 1D array prints a horizontal string
-		
 		String[][] pic = new String[10][8];
 		for(int row = 0; row < pic.length; row++){
 			//populate w/ coords
