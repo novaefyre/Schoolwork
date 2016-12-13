@@ -17,12 +17,13 @@ public class TextLabel extends Component {
 		super(x, y, w, h);
 		this.text = text;
 		font = "Times New Roman";
-		size = 40;
+		size = 20;
 		update();
 	}
 	
 	public void setText(String s){
 		this.text = s;
+		update();
 	}
 	
 	public String getText(){
@@ -35,6 +36,7 @@ public class TextLabel extends Component {
 
 	public void setSize(int size) {
 		this.size = size;
+		update();
 	}
 
 	public String getFont() {
@@ -43,10 +45,12 @@ public class TextLabel extends Component {
 
 	public void setFont(String font) {
 		this.font = font;
+		update();
 	}
 
 	@Override
 	public void update(Graphics2D g) {
+		g = clear();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(Color.black);
 		if(text != null){
