@@ -6,8 +6,6 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-import guiPractice.sampleGames.TextLabel;
-
 public class TextArea extends TextLabel {
 
 	public TextArea(int x, int y, int w, int h, String text) {

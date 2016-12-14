@@ -1,11 +1,9 @@
-package guiPractice.sampleGames;
+package guiPractice.components;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-
-import guiPractice.components.Component;
 
 public class TextLabel extends Component {
 	

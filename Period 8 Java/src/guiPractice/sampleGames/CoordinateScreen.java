@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import guiPractice.Screen;
 import guiPractice.components.TextArea;
+import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
 public class CoordinateScreen extends Screen implements MouseMotionListener{
