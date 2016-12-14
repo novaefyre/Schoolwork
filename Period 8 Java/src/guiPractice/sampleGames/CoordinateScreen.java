@@ -1,10 +1,13 @@
 package guiPractice.sampleGames;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import guiPractice.Screen;
+import guiPractice.components.Action;
+import guiPractice.components.Button;
 import guiPractice.components.TextArea;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -12,7 +15,8 @@ import guiPractice.components.Visible;
 public class CoordinateScreen extends Screen implements MouseMotionListener{
 	
 	private TextLabel label;
-	TextArea paragraph;
+	private TextArea paragraph;
+	private Button myButton;
 	
 	public CoordinateScreen(int width, int height) {
 		super(width, height);
@@ -24,6 +28,12 @@ public class CoordinateScreen extends Screen implements MouseMotionListener{
 		viewObjects.add(label);
 		paragraph = new TextArea(40,95,550,500,"This is a whole Paragragh. Notice how these words become increasingly inane and irrelevant as you continue to read.");
 		viewObjects.add(paragraph);
+		myButton = new Button(40,150,100,30,"Button",new Color(0,76,153), new Action(){
+			public void act(){
+			//code for action will be in here.
+			}
+		});
+		viewObjects.add(myButton);
 	}
 
 	@Override
@@ -34,12 +44,12 @@ public class CoordinateScreen extends Screen implements MouseMotionListener{
 
 	@Override
 	public void mouseMoved(MouseEvent m) {
-		if(m.getY() > 100){
-			label.setText("Mouse at "+m.getX()+", "+m.getY());
-		}else{
-			label.setText("Nooooo, I'm afraid of heights!");
-		}
-		
+//		if(m.getY() > 100){
+//			label.setText("Mouse at "+m.getX()+", "+m.getY());
+//		}else{
+//			label.setText("Nooooo, I'm afraid of heights!");
+//		}
+		label.setText("Mouse at "+m.getX()+", "+m.getY());
 	}
 	
 	public MouseMotionListener getMouseMotionListener(){
