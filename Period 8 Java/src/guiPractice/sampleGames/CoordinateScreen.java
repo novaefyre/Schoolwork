@@ -28,7 +28,7 @@ public class CoordinateScreen extends Screen implements MouseMotionListener{
 		viewObjects.add(label);
 		paragraph = new TextArea(40,95,550,500,"This is a whole Paragragh. Notice how these words become increasingly inane and irrelevant as you continue to read.");
 		viewObjects.add(paragraph);
-		myButton = new Button(40,150,100,30,"Button",new Color(0,76,153), new Action(){
+		myButton = new Button(40,200,80,40,"Button",new Color(0,76,153), new Action(){
 			public void act(){
 			//code for action will be in here.
 			}
