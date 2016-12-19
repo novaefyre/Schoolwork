@@ -4,16 +4,19 @@ import guiPractice.GUIApplication;
 
 public class MouseFollower extends GUIApplication {
 	
-	private CoordinateScreen coordScreen;
+	public static CoordinateScreen coordScreen;
+	public static TestScreen testScreen;
+	public static MouseFollower game;
 	
 	public static void main(String[] args){
-		GUIApplication game = new MouseFollower();
+		game = new MouseFollower();
 		Thread app = new Thread(game);
 		app.start();
 	}
 	
 	protected void initScreen() {
 		coordScreen = new CoordinateScreen(getWidth(), getHeight());
+		testScreen = new TestScreen(getWidth(), getHeight());
 		setScreen(coordScreen);
 	}
 

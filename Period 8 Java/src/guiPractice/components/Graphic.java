@@ -28,6 +28,14 @@ public class Graphic implements Visible {
 		loadedImage = false;
 		loadImages(imageLocation,w,h);
 	}
+	
+	public Graphic(int x, int y, double scale, String imageLocation) {
+		// TODO Auto-generated constructor stub
+		this.x = x;
+		this.y = y;
+		loadedImage = false;
+		loadImages(imageLocation,scale);
+	}
 
 	private void loadImages(String imageLocation, int w, int h) {
 		// TODO Auto-generated method stub
@@ -46,7 +54,7 @@ public class Graphic implements Visible {
 				image = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
 				Graphics2D g = image.createGraphics();
 				//select coords of top left rectangle within image, then select width and height for display, THEN select x/y coordinates and width/height. this can split an image into parts
-				g.drawImage(icon.getImage(),0,0, w, h,0,0, icon.getIconWidth(),icon.getIconHeight(),null);
+				g.drawImage(icon.getImage(),0,0,w,h,0,0,icon.getIconWidth(),icon.getIconHeight(),null);
 			}
 			loadedImage = true;
 		}
@@ -56,8 +64,20 @@ public class Graphic implements Visible {
 	}
 
 	private void loadImages(String imageLocation, double scale) {
-		// TODO Auto-generated method stub
-		
+		try{
+			ImageIcon icon = new ImageIcon(imageLocation);
+			
+			int newWidth = (int)(icon.getIconWidth()*scale);
+			int newHeight = (int)(icon.getIconHeight()*scale);
+			image = new BufferedImage(newWidth,newHeight,BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = image.createGraphics();
+			g.drawImage(icon.getImage(),0,0,newWidth,newHeight,0,0,icon.getIconWidth(),icon.getIconHeight(),null);
+			
+			loadedImage = true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override

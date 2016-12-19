@@ -40,14 +40,6 @@ public class Button extends TextLabel implements Clickable{
 		if(getText() != null){
 			g.setColor(Color.white);
 			g.setFont(new Font(getFont(),Font.PLAIN,getSize()));
-//			String t = getText();
-//			int cutOff = t.length();
-//			while(cutOff > 0 && fm.stringWidth(t) > getWidth())
-//			{
-//				cutOff--;
-//				t = t.substring(0, cutOff);
-//			}
-//			g.drawString(t, ((getWidth()-fm.stringWidth(t))/2), (getHeight()+fm.getHeight()-fm.getDescent())/2);
 			g.drawString(getText(), 4, getHeight()-5);
 			
 		}

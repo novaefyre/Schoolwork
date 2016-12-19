@@ -2,6 +2,7 @@ package guiPractice.sampleGames;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import guiPractice.components.TextArea;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
-public class CoordinateScreen extends Screen implements MouseMotionListener{
+public class CoordinateScreen extends Screen implements MouseMotionListener, MouseListener{
 	
 	private TextLabel label;
 	private TextArea paragraph;
@@ -30,10 +31,10 @@ public class CoordinateScreen extends Screen implements MouseMotionListener{
 		paragraph = new TextArea(40,95,550,500,"This is a whole Paragragh. Notice how these words become increasingly inane and irrelevant as you continue to read.");
 		myButton = new Button(40,200,80,40,"Button",new Color(0,76,153), new Action(){
 			public void act(){
-			//code for action will be in here.
+				MouseFollower.game.setScreen(MouseFollower.testScreen);
 			}
 		});
-		img = new Graphic(50,50,"resources/sampleImages/nova.jpg");
+		img = new Graphic(250,250,.5,"resources/sampleImages/nova.jpg");
 		viewObjects.add(img);
 		viewObjects.add(myButton);
 		viewObjects.add(paragraph);
@@ -58,6 +59,37 @@ public class CoordinateScreen extends Screen implements MouseMotionListener{
 	
 	public MouseMotionListener getMouseMotionListener(){
 		return this;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(myButton.isClicked(e.getX(), e.getY())){
+			myButton.act();
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
