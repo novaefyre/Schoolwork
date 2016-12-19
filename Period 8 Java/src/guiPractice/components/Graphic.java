@@ -1,22 +1,50 @@
 package guiPractice.components;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-public class Graphic implements Visible {
+import javax.swing.ImageIcon;
 
+public class Graphic implements Visible {
+	
 	private int x;
 	private int y;
 	private BufferedImage image;
-	private boolean loadedImages;
+	private boolean loadedImage;
 	
-	public Graphic(int x, int y, String imageLocation){
+
+	public Graphic(int x, int y, String imageLocation) {
+		// TODO Auto-generated constructor stub
 		this.x = x;
 		this.y = y;
-		loadedImages = false;
-		loadImages(imageLocation, 0.0);
+		loadedImage = false;
+		loadImages(imageLocation,0,0);
 	}
-	
-	public void loadImages(String imageLocation, double d) {
+
+	private void loadImages(String imageLocation, int w, int h) {
+		// TODO Auto-generated method stub
+		try{
+			//get the image from file FULL SIZE
+			ImageIcon icon = new ImageIcon(imageLocation);
+			
+			if(w == 0 && h == 0){
+				//use original size
+				image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(),BufferedImage.TYPE_INT_ARGB);
+				//draw icon into image
+				Graphics2D g = image.createGraphics();
+				g.drawImage(icon.getImage(), 0, 0, null);
+			}else{
+				//use custom size
+				
+			}
+			loadedImage = true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	private void loadImages(String imageLocation, double scale) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -24,7 +52,7 @@ public class Graphic implements Visible {
 	@Override
 	public BufferedImage getImage() {
 		// TODO Auto-generated method stub
-		return null;
+		return image;
 	}
 
 	@Override
@@ -42,13 +70,13 @@ public class Graphic implements Visible {
 	@Override
 	public int getWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return image.getWidth();
 	}
 
 	@Override
 	public int getHeight() {
 		// TODO Auto-generated method stub
-		return 0;
+		return image.getHeight();
 	}
 
 	@Override
@@ -59,8 +87,7 @@ public class Graphic implements Visible {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		//does nothing image never changes
 	}
 
 }
