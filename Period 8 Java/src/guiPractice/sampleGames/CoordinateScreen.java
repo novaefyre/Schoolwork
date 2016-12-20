@@ -19,7 +19,7 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 	private TextLabel label;
 	private TextArea paragraph;
 	private Button myButton;
-	private Graphic img;
+//	private Graphic img;
 	
 	public CoordinateScreen(int width, int height) {
 		super(width, height);
@@ -29,13 +29,13 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 	public void initObjects(ArrayList<Visible> viewObjects){
 		label = new TextLabel(40,45,760, 40,"Sample Text");
 		paragraph = new TextArea(40,95,550,500,"This is a whole Paragragh. Notice how these words become increasingly inane and irrelevant as you continue to read.");
-		myButton = new Button(40,200,80,40,"Button",new Color(0,76,153), new Action(){
+		myButton = new Button(40,200,80,40,"Test",new Color(0,76,153), new Action(){
 			public void act(){
 				MouseFollower.game.setScreen(MouseFollower.testScreen);
 			}
 		});
-		img = new Graphic(250,250,.5,"resources/sampleImages/nova.jpg");
-		viewObjects.add(img);
+//		img = new Graphic(250,250,.5,"resources/sampleImages/nova.jpg");
+//		viewObjects.add(img);
 		viewObjects.add(myButton);
 		viewObjects.add(paragraph);
 		viewObjects.add(label);
@@ -60,10 +60,14 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 	public MouseMotionListener getMouseMotionListener(){
 		return this;
 	}
+	
+	public MouseListener getMouseListener(){
+		return this;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(myButton.isClicked(e.getX(), e.getY())){
+		if(myButton.isHovered(e.getX(), e.getY())){
 			myButton.act();
 		}
 	}

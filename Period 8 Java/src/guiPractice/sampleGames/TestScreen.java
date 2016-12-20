@@ -3,12 +3,12 @@ package guiPractice.sampleGames;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import guiPractice.Screen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
+import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -16,7 +16,7 @@ import guiPractice.components.Visible;
 public class TestScreen extends Screen implements MouseListener{
 
 	private TextLabel testLabel;
-	private Graphic testImg;
+	private ClickableGraphic testImg;
 	private Button testButton;
 	
 	public TestScreen(int width, int height) {
@@ -27,8 +27,12 @@ public class TestScreen extends Screen implements MouseListener{
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		testLabel = new TextLabel(40,45,760, 40,"This is a test.");
-		testImg = new Graphic(250,250,"resources/sampleImages/nova.jpg");
-		testButton = new Button(40,200,80,40,"Button",new Color(0,76,153), new Action(){
+		testImg = new ClickableGraphic(250,250,"resources/sampleImages/nova.jpg",new Action(){
+			public void act(){
+				
+			}
+		});
+		testButton = new Button(40,200,80,40,"Coord",new Color(0,76,153), new Action(){
 			public void act(){
 				MouseFollower.game.setScreen(MouseFollower.coordScreen);
 			}
@@ -38,10 +42,14 @@ public class TestScreen extends Screen implements MouseListener{
 		viewObjects.add(testLabel);
 
 	}
+	
+	public MouseListener getMouseListener(){
+		return this;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(testButton.isClicked(e.getX(), e.getY())){
+		if(testButton.isHovered(e.getX(), e.getY())){
 			testButton.act();
 		}
 	}

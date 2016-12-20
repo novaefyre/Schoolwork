@@ -2,7 +2,6 @@ package guiPractice.components;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
@@ -31,7 +30,6 @@ public class Button extends TextLabel implements Clickable{
 	
 	@Override
 	public void update(Graphics2D g){
-		FontMetrics fm = g.getFontMetrics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(color);
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 35);//
@@ -49,7 +47,7 @@ public class Button extends TextLabel implements Clickable{
 	@Override
 	public boolean isHovered(int x, int y) {
 		// TODO Auto-generated method stub
-		if(x >= getX() && x <= getX() + getWidth() && y >= getY() && y <= getY() + getHeight()){
+		if(x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight()){
 			return true;
 		}
 		return false;
