@@ -63,7 +63,7 @@ public class Graphic implements Visible {
 		}
 	}
 
-	private void loadImages(String imageLocation, double scale) {
+	public void loadImages(String imageLocation, double scale) {
 		try{
 			ImageIcon icon = new ImageIcon(imageLocation);
 			

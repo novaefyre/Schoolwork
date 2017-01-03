@@ -109,4 +109,9 @@ public abstract class Screen {
 		return null;
 	}
 
+	public void addObject(Visible v) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -29,7 +29,7 @@ public class TestScreen extends Screen implements MouseListener{
 		testLabel = new TextLabel(40,45,760, 40,"This is a test.");
 		testImg = new ClickableGraphic(250,250,"resources/sampleImages/nova.jpg",new Action(){
 			public void act(){
-				
+				testImg.loadImages("resources/sampleImages/nova.jpg",1);
 			}
 		});
 		testButton = new Button(40,200,80,40,"Coord",new Color(0,76,153), new Action(){

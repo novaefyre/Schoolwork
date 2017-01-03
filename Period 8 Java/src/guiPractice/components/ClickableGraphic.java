@@ -18,5 +18,9 @@ public class ClickableGraphic extends Graphic {
 		super(x, y, scale, imageLocation);
 		action = a;
 	}
+	
+	public ClickableGraphic(int x, int y, double scale, String imageLocation) {
+		super(x, y, scale, imageLocation);
+	}
 
 }
