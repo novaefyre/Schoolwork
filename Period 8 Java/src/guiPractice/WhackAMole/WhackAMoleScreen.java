@@ -50,7 +50,7 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable{
 	*placeholder because early in the game design process, the enemies aren't designed yet,
 	*so we use this method later, once we learn how to create a enemy
 	*/
-	private MoleInterface getAMole() 
+	private Mole getAMole() 
 	{
 		return new Mole((int)(getWidth() * Math.random() - 100),(int)(getHeight() * Math.random()));
 	}
@@ -96,7 +96,7 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable{
 		double probability = 0.2 + 0.1 * (30.0 - timeLeft) / 30;
 		if(Math.random() < probability)
 		{
-			final MoleInterface mole = getAMole();//mole is not going to be changing into different things
+			final Mole mole = getAMole();//mole is not going to be changing into different things
 			//between .5 and 2.5 second
 			mole.setAppearanceTime((int)(500 + Math.random() * 2000));
 			mole.setAction(new Action(){
@@ -120,7 +120,7 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable{
 		//each mole has a "clock" when the clock counts down to 0 it disappears
 		for(int i = 0; i<moles.size();i++)
 		{
-			MoleInterface m = moles.get(i);
+			Mole m = (Mole) moles.get(i);
 			m.setAppearanceTime(m.getAppearanceTime() - 100);
 			if(m.getAppearanceTime() <= 0)
 			{
