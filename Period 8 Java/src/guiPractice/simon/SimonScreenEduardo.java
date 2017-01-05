@@ -27,6 +27,11 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
+		label.setText("");
+	    nextRound();
+	}
+
+	public void nextRound() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -84,6 +89,7 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 								b.highlight();
 								try {
 									Thread.sleep(800);
+									b.dim();
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -91,6 +97,15 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 							}
 						});
 						blink.start();
+						if(b == sequence.get(sequenceIndex).getButton()){
+							sequenceIndex++;
+						}else{
+							progressBox.gameOver();
+						}
+						if(sequenceIndex == sequence.size()){
+							Thread nextRound = new Thread(SimonScreenEduardo.this);
+							nextRound.start(); 
+						}
 					}
 				}
 			});
