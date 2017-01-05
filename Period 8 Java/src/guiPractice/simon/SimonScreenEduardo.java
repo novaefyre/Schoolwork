@@ -3,6 +3,7 @@ package guiPractice.simon;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import guiPractice.components.Action;
 import guiPractice.ClickableScreen;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -71,10 +72,35 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 		int numberOfButtons = 4;
 		Color[] colors = {Color.blue,Color.green,Color.red,Color.yellow,Color.orange};
 		for(int i = 0; i < numberOfButtons; i++){
-			ButtonInterfaceEduardo b = new ButtonInterfaceEduardo(colors[i]);
-			buttons[i] = b;
+			final ButtonInterfaceEduardo b = getAButton();
+			b.setColor(colors[i]);
+			b.setX(60);
+			b.setY(getWidth()/numberOfButtons*i);
+			b.setAction(new Action(){
+				public void act(){
+					if(acceptingInput){
+						Thread blink = new Thread(new Runnable(){
+							public void run(){
+								b.highlight();
+								try {
+									Thread.sleep(800);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						});
+						blink.start();
+					}
+				}
+			});
 		}
 		
+	}
+
+	private ButtonInterfaceEduardo getAButton() {
+		// placeholder for... well, you know the drill
+		return null;
 	}
 
 }
