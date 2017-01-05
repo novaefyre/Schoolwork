@@ -2,6 +2,7 @@ package guiPractice.sampleGames;
 
 import guiPractice.GUIApplication;
 
+@SuppressWarnings("serial")
 public class MouseFollower extends GUIApplication {
 	
 	public static CoordinateScreen coordScreen;

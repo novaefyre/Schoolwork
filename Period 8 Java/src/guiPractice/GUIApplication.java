@@ -3,6 +3,7 @@ package guiPractice;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public abstract class GUIApplication extends JFrame implements Runnable{
 
 	private Screen currentScreen;

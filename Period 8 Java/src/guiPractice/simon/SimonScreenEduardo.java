@@ -33,7 +33,7 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		addButtons();
-		Object progress = getProgress();
+		progressBox = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		sequence = new ArrayList<MoveInterfaceEduardo>();
 		//add 2 moves to start
@@ -41,7 +41,7 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 		sequence.add(randomMove());
 		sequence.add(randomMove());
 		roundNumber = 0;
-		viewObjects.add(progress);
+		viewObjects.add(progressBox);
 		viewObjects.add(label);
 	}
 
@@ -57,20 +57,22 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 	}
 
 	private MoveInterfaceEduardo getMove(ButtonInterfaceEduardo b) {
-		// TODO Auto-generated method stub
+		// placeholder until Move is completed
 		return null;
 	}
 
-	private Object getProgress() {
+	private ProgressInterfaceEduardo getProgress() {
 		//Placeholder until partner completes progressBox
 		return null;
 	}
-
+	
+	
 	private void addButtons() {
 		int numberOfButtons = 4;
 		Color[] colors = {Color.blue,Color.green,Color.red,Color.yellow,Color.orange};
 		for(int i = 0; i < numberOfButtons; i++){
-			ButtonInterfaceEduardo b;
+			ButtonInterfaceEduardo b = new ButtonInterfaceEduardo(colors[i]);
+			buttons[i] = b;
 		}
 		
 	}

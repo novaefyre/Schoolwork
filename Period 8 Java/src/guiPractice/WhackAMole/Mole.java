@@ -10,7 +10,7 @@ public class Mole extends ClickableGraphic implements MoleInterface {
 	
 	public Mole(int x, int y)
 	{
-		super(x,y,0.2,"resources/sampleImages/mole.png");
+		super(x,y,1,"resources/sampleImages/mole.png");
 	}
 
 	@Override

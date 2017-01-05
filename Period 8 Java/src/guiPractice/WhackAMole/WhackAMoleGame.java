@@ -2,6 +2,7 @@ package guiPractice.WhackAMole;
 
 import guiPractice.GUIApplication;
 
+@SuppressWarnings("serial")
 public class WhackAMoleGame extends GUIApplication {
 	
 	

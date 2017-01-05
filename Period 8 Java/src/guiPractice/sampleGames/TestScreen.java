@@ -9,7 +9,6 @@ import guiPractice.Screen;
 import guiPractice.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
-import guiPractice.components.Graphic;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
 
@@ -27,7 +26,8 @@ public class TestScreen extends Screen implements MouseListener{
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		testLabel = new TextLabel(40,45,760, 40,"This is a test.");
-		testImg = new ClickableGraphic(250,250,"resources/sampleImages/nova.jpg",new Action(){
+		testImg = new ClickableGraphic(250,250,1,"resources/sampleImages/nova.jpg");
+		testImg.setAction(new Action(){
 			public void act(){
 				testImg.loadImages("resources/sampleImages/nova.jpg",1);
 			}
