@@ -4,6 +4,10 @@ import guiPractice.components.Visible;
 
 public interface ProgressInterfaceEduardo extends Visible {
 
-	void gameOver();
+	public void gameOver();
+	
+	public void setRound(int round);
+	
+	public void setSequenceSize(int seqSize);
 
 }

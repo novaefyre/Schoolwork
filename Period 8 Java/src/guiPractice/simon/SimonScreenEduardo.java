@@ -24,6 +24,10 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 		Thread app = new Thread(this);
 		app.start();
 	}
+	
+	public void changeText(String text){
+		label.setText(text);
+	}
 
 	@Override
 	public void run() {
@@ -32,8 +36,47 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 	}
 
 	public void nextRound() {
-		// TODO Auto-generated method stub
-		
+		acceptingInput = false;
+		roundNumber++;
+		sequence.add(randomMove());
+		progressBox.setRound(roundNumber);
+		progressBox.setSequenceSize(sequence.size());
+		changeText("Simon's Turn");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		changeText("");
+		playSequence();
+		changeText("Your Turn");
+		acceptingInput = true;
+		sequenceIndex = 0;
+	}
+
+	public void playSequence() {
+		ButtonInterfaceEduardo b = null;
+		for(int i = 0; i < sequence.size(); i++){
+			if(b != null){
+				b.dim();
+			}
+			b = sequence.get(sequenceIndex).getButton();
+			b.highlight();
+			long sleepTime;
+			if(roundNumber != 1){
+				sleepTime = 1000/(roundNumber-1)*7/8;
+			}else{
+				sleepTime = 10;
+			}
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		b.dim();
 	}
 
 	@Override
@@ -106,6 +149,7 @@ public class SimonScreenEduardo extends ClickableScreen implements Runnable {
 							Thread nextRound = new Thread(SimonScreenEduardo.this);
 							nextRound.start(); 
 						}
+						addObject(b);
 					}
 				}
 			});
