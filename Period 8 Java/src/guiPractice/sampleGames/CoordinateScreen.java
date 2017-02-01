@@ -1,15 +1,19 @@
 package guiPractice.sampleGames;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 import guiPractice.Screen;
 import guiPractice.components.Action;
+import guiPractice.components.AnimatedComponent;
 import guiPractice.components.Button;
-import guiPractice.components.MovingComponent;
 import guiPractice.components.TextArea;
 import guiPractice.components.TextLabel;
 import guiPractice.components.Visible;
@@ -17,7 +21,6 @@ import guiPractice.components.Visible;
 public class CoordinateScreen extends Screen implements MouseMotionListener, MouseListener{
 	
 	private TextLabel label;
-	private TextArea paragraph;
 	private Button myButton;
 //	private Graphic img;
 	
@@ -28,7 +31,7 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 	@Override
 	public void initObjects(ArrayList<Visible> viewObjects){
 		label = new TextLabel(40,45,760, 40,"Sample Text");
-		paragraph = new TextArea(40,95,550,500,"This is a whole Paragragh. Notice how these words become increasingly inane and irrelevant as you continue to read.");
+		new TextArea(40,95,550,500,"This is a whole Paragragh. Notice how these words become increasingly inane and irrelevant as you continue to read.");
 		myButton = new Button(40,200,80,40,"Test",new Color(0,76,153), new Action(){
 			public void act(){
 				MouseFollower.game.setScreen(MouseFollower.testScreen);
@@ -36,13 +39,40 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 		});
 //		img = new Graphic(250,250,.5,"resources/sampleImages/nova.jpg");
 //		viewObjects.add(img);
-		viewObjects.add(myButton);
-		viewObjects.add(paragraph);
-		viewObjects.add(label);
-		MovingComponent mc = new MovingComponent(30,60,80,80);
-		mc.setVy(3);
-		mc.play();
-		viewObjects.add(mc);
+//		viewObjects.add(myButton);
+//		viewObjects.add(paragraph);
+//		viewObjects.add(label);
+//		MovingComponent mc = new MovingComponent(30,60,80,80);
+//		mc.setVy(3);
+//		mc.play();
+//		viewObjects.add(mc);
+		addAnimation(viewObjects);
+	}
+
+	public void addAnimation(ArrayList<Visible> viewObjects) {
+		AnimatedComponent a = new AnimatedComponent(40,50,150,150);
+		try{
+			int numberInRow = 22;
+			int rows = 3;
+			int w = 25;
+			int h = 53;
+			ImageIcon icon = new ImageIcon("resources/sampleImages/megaman-sprite.gif");
+			for(int i = 0; i < numberInRow * rows; i++){
+				BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+				Graphics2D g = image.createGraphics();
+				int leftMargin = 0;
+				int topMargin = 0;
+				int x1 = leftMargin+w*(i%numberInRow);
+				int y1 = topMargin+h*(i/numberInRow);
+				g.drawImage(icon.getImage(), 0,0,w, h, x1, y1,x1+w, y1+h, null);
+				a.addFrame(image, 20);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		viewObjects.add(a);
+//		a.setVx(1.0);
+		a.play();
 	}
 
 	@Override
