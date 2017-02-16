@@ -8,10 +8,24 @@ public class StringPractice {
 	static String user;
 
 	public static void main(String[] args) {
-		//demonstrateStringMethods();
-		createFields();
-		promptName();
-		promptForever();
+		System.out.println(stringContains("2048icon", "icon"));
+	}
+	
+	public static boolean stringContains(String a, String b){
+		boolean doesContain = false;
+		for(int i = 0; i < a.length(); i++){
+			int bIdx = 0;
+			int aIdx = i;
+			while(bIdx < b.length() && aIdx < a.length() && a.charAt(aIdx) == b.charAt(bIdx)){
+				bIdx++;
+				aIdx++;
+			}
+			if(bIdx == b.length()){
+				doesContain = true;
+				break;
+			}
+		}
+		return doesContain;
 	}
 
 	public static void promptName() {
