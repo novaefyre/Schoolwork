@@ -8,7 +8,7 @@ public class StringPractice {
 	static String user;
 
 	public static void main(String[] args) {
-		System.out.println(stringContains("2048icon", "icon"));
+		System.out.println(stringContains("2048ico", "icon"));
 	}
 	
 	public static boolean stringContains(String a, String b){
